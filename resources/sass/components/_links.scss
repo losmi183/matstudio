@@ -1,0 +1,35 @@
+#links {
+    border-top: 2px solid #cccccc;
+    padding: 50px 0;
+    background: #eee;
+
+    a {
+        background: #666;
+        width: 50px;
+        height: 50px;
+        border: 2px solid #fff;
+        border-radius: 50px;
+
+        margin: 0 7px;
+
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: all 0.6s;
+        &:hover {
+            background: #fff;
+            border: 2px solid #666;
+            i {
+                color: #666;
+            }
+        }
+    }
+
+    i {
+        position: absolute;
+        color: #fff;
+        font-size: 25px;
+    }
+}

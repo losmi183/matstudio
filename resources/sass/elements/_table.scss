@@ -1,0 +1,28 @@
+table {
+    width: 100%;
+    .mobile-hide {
+        display: none;
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) { 
+    table {
+        th {
+            display: none;
+        }
+        tr, td {
+            display: block;
+            
+        }
+        tr {
+            margin-bottom: 60px;
+            border: 1px solid #ccc;
+        }
+        .mobile-hide {
+            display: inline-block;
+            font-weight: 700;
+        }
+    }
+
+}

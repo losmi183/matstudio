@@ -1,0 +1,40 @@
+/*
+* NAVBAR
+*/
+.navbar {
+    // background: #eee !important;
+    box-shadow: 3px 3px 8px #888888;
+    padding: 16px 16px;
+    transition: all 0.6s;
+
+    .navbar-brand {
+        transition: all 0.6s;
+        height: 45px;
+    }
+
+    .navbar-brand img {
+        margin-left: 23px;
+        height: 100%;
+        width: auto;
+    }
+    
+    // border-bottom: 2px solid #ccc;
+
+    li {
+        margin: 0 20px;
+    }
+    
+    li a {
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 500;
+        color: #777 !important;
+        padding: 0 8px;   
+        &:hover {
+            transition: all 0.3s;   
+            color: #111 !important;
+        }
+    }
+
+
+}
