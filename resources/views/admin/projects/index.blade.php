@@ -22,12 +22,12 @@
             <tr>
                 <td> <span class="mobile-hide">ID: </span> {{ $project->id }}</td>
                 <td> <span class="mobile-hide">Name: </span> {{ $project->name }}</td>
-                <td> <span class="mobile-hide">Image: </span> <img height="65px" src="/{{ $project->image_full }}" alt=""> </td>
+                <td> <span class="mobile-hide">Image: </span> <img height="65px" src="/{{ $project->photos->first()->thumb }}" alt=""> </td>
                 <td> <span class="mobile-hide">Description: </span> {{ limitText($project->description) }}</td>
                 <td> <span class="mobile-hide">Created: </span> {{ formatDate($project->created_at) }}</td>
                 <td>
                     <form action="" >
-                        <a href="/admin/projects/edit/{{$project->id}}" class="btn btn-primary mb-1">Edit</a>
+                        <a href="/admin/projects/{{ $project->id }}/edit" class="btn btn-primary mb-1">Edit</a>
                         <button class="btn btn-danger mb-1">Delete</button>
                     </form>
                 </td>

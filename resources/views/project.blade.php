@@ -12,21 +12,20 @@
 
             <div class="col-lg-6">
                 <div class="img-wrapper">
-                    <img class="img-fluid" src="/images/projects/{{$project->images->first()->full}}" alt="">
+                    <img class="img-fluid" src="/{{$project->photos->first()->full}}" alt="">
                 </div>
 
                 <div class="thumb-wrapper">
-                    <div class="thumb"><img data-full="/images/projects/2.jpg" src="/images/projects/2-thumb.jpg" alt=""></div>
-                    <div class="thumb"><img data-full="/images/projects/3.jpg" src="/images/projects/3-thumb.jpg" alt=""></div>
-                    <div class="thumb"><img data-full="/images/projects/4.jpg" src="/images/projects/4-thumb.jpg" alt=""></div>
-                    <div class="thumb"><img data-full="/images/projects/5.jpg" src="/images/projects/5-thumb.jpg" alt=""></div>
+                    @foreach ($project->photos as $photo)
+                        <div class="thumb"><img data-full="/{{$photo->full}}" src="/{{$photo->thumb}}" alt=""></div>
+                    @endforeach
                 </div>
 
                 <div class="space-20"></div>
 
             </div>
 
-            <div class="col-lg-6">                    
+            <div class="col-lg-4">                    
                 <p> {{$project->description}} </p>
             </div>
         </div>

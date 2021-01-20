@@ -29,6 +29,7 @@
 // Boxes
 @import 'boxes/project';
 @import 'boxes/project2';
+@import 'boxes/classic';
 
 
 // Components
@@ -38,9 +39,13 @@
 
 // Pages
 @import 'pages/project';
+@import 'pages/gallery';
+@import 'pages/masonry';
 
 // Admin
 @import 'admin/layout';
+@import 'admin/project-create';
+@import 'admin/project-edit';
 
 
 

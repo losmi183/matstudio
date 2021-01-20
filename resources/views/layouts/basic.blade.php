@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,27 +14,31 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @yield('extra-css')
+
 </head>
+
 <body>
-    <div id="app">
 
-        @include('partials.navbar')
-
-        @yield('content')
-
-        <div class="space-80"></div>
-
-        @include('partials.links')
-
-        <footer>
-            <p>Copyright © mat. Studio. All rights reserved.</p>
-        </footer>
-
-    </div>
+    @include('partials.navbar')
     
+    @yield('content')
+    
+    <div class="space-80"></div>
+
+    @include('partials.links')
+
+    <footer>
+        <p>Copyright © mat. Studio. All rights reserved.</p>
+    </footer>
+
+
+
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    @yield('extra-js')
+    @yield('extra-js')    
 </body>
 </html>

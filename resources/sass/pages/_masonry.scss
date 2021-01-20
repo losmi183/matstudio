@@ -1,0 +1,90 @@
+/*
+* GRID RESPONSIVNESS SETUP
+*/
+
+* { box-sizing: border-box; }
+
+/* force scrollbar */
+html { overflow-y: scroll; }
+
+
+/* ---- grid ---- */
+
+.grid {    
+    // background: #DDD;
+}
+
+/* clear fix */
+.grid:after {
+content: '';
+display: block;
+clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+width: 25%;
+}
+
+.grid-item {
+float: left;
+}
+
+.grid-item img {
+display: block;
+max-width: 100%;
+}
+@media (max-width: 1199.98px) { 
+    .grid-sizer, .grid-item {
+        width: 33.333%;
+    }
+}
+
+@media (max-width: 767.98px) { 
+    .grid-sizer, .grid-item {
+        width: 50%;
+    }
+}
+@media (max-width: 575.98px) { 
+    .grid-sizer, .grid-item {
+        width: 100%;
+    }
+}
+
+
+/*
+* MASSONERY BOX SETUP
+*/
+.masonry-box {
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.masonry-img {
+    overflow: hidden;
+
+    &:hover {
+        img {
+            transition: all 0.4s;
+            &:hover {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+.masonry-text {
+    text-align: center;
+    a {
+        font-size: 25px;
+        text-transform: uppercase;
+        color: #777;
+    }
+    a:hover {
+        text-decoration: none;
+        color: #777;
+    }
+}

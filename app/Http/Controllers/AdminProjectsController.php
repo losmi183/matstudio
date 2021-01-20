@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Photo;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class AdminProjectsController extends Controller
 {
@@ -14,7 +17,7 @@ class AdminProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::paginate(10);
+        $projects = Project::with('photos')->paginate(15);
 
         return view('admin.projects.index', compact('projects'));
     }
@@ -36,27 +39,50 @@ class AdminProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {        
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+            'description' => 'required',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
         ]);
 
-        $path = null;
-
-        if ($request->hasFile('image')) 
-        {
-            $path = $request->file('image')->store('images/projects');
-        }
-
-        Project::create([
+        // Create Porject first
+        $project = Project::create([
             'name' => $request->name,
             'description' => $request->description,
-            'image_full' => $path,
         ]);
 
-        return redirect()->route('projects.index')->with('success', 'Project Created');
+            
+        // array of temp images
+        $images = $request->file('images');
 
+        $i = 1;
+        foreach($images as $image)
+        {
+            // Get extension of uploading file
+            $extension = $image->getClientOriginalExtension();    
+            // Saving full size image and returning path / filename
+            $image_full = $image->store('images/projects');  
+            // Taking that full size image
+            $image = Image::make($image_full);
+            
+
+            // Crop image and resize image
+            $image->fit(600, 600);
+            // Unique_name for thumbnail image
+            $image_thumb = 'images/projects/' . time() . $i++ . '.' . $extension;            
+            // save image in same folder with thumb name 
+            $image->save($image_thumb, 70);
+
+            // Create separate Image in database for each file
+            Photo::create([
+                'full' => $image_full,
+                'thumb' => $image_thumb,
+                'project_id' => $project->id
+            ]);
+        }
+
+        return redirect()->route('projects.index')->with('success', 'Project Created');
     }
 
     /**
@@ -78,7 +104,9 @@ class AdminProjectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::with('photos')->where('id', $id)->first();
+
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -102,5 +130,56 @@ class AdminProjectsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * 
+     * Custom Methods
+     * 
+     */
+    public function addPhoto(Request $request, $id)
+    {
+        if( ! $request->hasFile('image') ) {
+            return back()->with('error', 'Please select image to upload');
+        }
+
+        $image = $request->file('image');
+
+        // Get extension of uploading file
+        $extension = $image->getClientOriginalExtension();    
+        // Saving full size image and returning path / filename
+        $image_full = $image->store('images/projects');  
+        // Taking that full size image
+        $image = Image::make($image_full);
+        
+
+        // Crop image and resize image
+        $image->fit(600, 600);
+        // Unique_name for thumbnail image
+        $image_thumb = 'images/projects/' . time() . '.' . $extension;            
+        // save image in same folder with thumb name 
+        $image->save($image_thumb, 70);
+
+        // Create separate Image in database for each file
+        Photo::create([
+            'full' => $image_full,
+            'thumb' => $image_thumb,
+            'project_id' => $id
+        ]);
+    
+
+        return back()->with('success', 'Photo added');
+    }
+
+
+    public function removePhoto($id)
+    {
+        $photo = Photo::find($id);
+
+        Storage::delete([$photo->full, $photo->thumb]);
+
+        $photo->delete();
+
+        return back()->with('success', 'Photo deleted');
     }
 }

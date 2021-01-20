@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Photo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Project extends Model
 {
@@ -11,9 +12,9 @@ class Project extends Model
 
     protected $guarded = [];
 
-    public function images()
+    public function photos()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Photo::class);
     }
     
 }

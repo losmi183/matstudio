@@ -30,7 +30,7 @@
             <div class="project">
               <a href="{{ route('project', $project->id) }}">
                 <div class="img-wrapper">
-                  <img src="{{ $project->image_thumb }}" alt="">
+                  <img src="{{ $project->photos->first()->thumb }}" alt="">
                 </div>
               </a>
   

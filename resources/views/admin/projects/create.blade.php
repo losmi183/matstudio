@@ -26,9 +26,59 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="d-block">Image</label>
-                            <input type="file" name="image">
+                            <label class="d-block">Photo</label>
+                            <input type="file" name="images[]">
                         </div>
+
+                        <div class="form-group">
+                            <label class="d-block">Photo</label>
+                            <input type="file" name="images[]">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="d-block">Photo</label>
+                            <input type="file" name="images[]">
+                        </div>
+
+                        <span class="add-second">Add more Images</span>
+
+                        <div class="second-group">
+                            <div class="form-group">
+                                <label class="d-block">Photo</label>
+                                <input type="file" name="images[]">
+                            </div>
+    
+                            <div class="form-group">
+                                <label class="d-block">Photo</label>
+                                <input type="file" name="images[]">
+                            </div>
+    
+                            <div class="form-group">
+                                <label class="d-block">Photo</label>
+                                <input type="file" name="images[]">
+                            </div>        
+                            
+                            <span class="add-third">Add more Images</span>
+                        </div>
+
+                        <div class="third-group">
+                            <div class="form-group">
+                                <label class="d-block">Photo</label>
+                                <input type="file" name="images[]">
+                            </div>
+    
+                            <div class="form-group">
+                                <label class="d-block">Photo</label>
+                                <input type="file" name="images[]">
+                            </div>
+    
+                            <div class="form-group">
+                                <label class="d-block">Photo</label>
+                                <input type="file" name="images[]">
+                            </div>                            
+                        </div>
+
+                    
 
                         <div class="d-flex justify-content-between mt-5">
                             <button class="btn btn-danger">Back</button>

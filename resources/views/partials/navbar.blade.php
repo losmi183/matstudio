@@ -6,10 +6,14 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="nav-link" href="/about">Work</a></li>
-          <li class="nav-item"><a class="nav-link" href="/">About</a></li>
+          <li class="nav-item "><a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" href="/">Crop</a></li>
+          <li class="nav-item"><a class="nav-link {{ (request()->is('gallery')) ? 'active' : '' }}" href="/gallery">Simple(Columns)</a></li>
+          <li class="nav-item"><a class="nav-link {{ (request()->is('masonry')) ? 'active' : '' }}" href="/masonry">Masonry(JS plugin)</a></li>
+          <li class="nav-item"><a class="nav-link {{ (request()->is('classic')) ? 'active' : '' }}" href="/classic">Classic</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
+          {{-- <li class="nav-item"><a class="nav-link" href="/">About</a></li>
           <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="/customers">Team</a></li>
+          <li class="nav-item"><a class="nav-link" href="/customers">Team</a></li> --}}
       </ul>
 
     </div>

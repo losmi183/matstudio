@@ -33,8 +33,8 @@
       
       <!-- Top Navbar  -->
     <div id="top-area">
-        <a style="text-decoration: none" href="/admin"><h3 class="mt-0 primary-color mr-3" >Pizza 66 Admin</h3></a> 
-        <button title="hide/show sidebar" class="hamburger"><i class="fas fa-bars"></i></button>
+        <button title="hide/show sidebar" class="hamburger mr-3"><i class="fas fa-bars"></i></button>
+        <a style="text-decoration: none" href="/admin"><h3 class="mt-0 primary-color " >Pizza 66 Admin</h3></a> 
     </div>
 
 
@@ -44,15 +44,17 @@
             <ul class="sidebar-list">
                 <li class="sidebar-item"><a href="/admin"><i class="fas fa-tachometer-alt"></i></i>Admin</a></li>
                
-                <li class="sidebar-item"><a href="/admin/actions"><i class="fas fa-percent"></i></i>Projects</a></li>
-                <li class="sidebar-item"><a href="/"><i class="fas fa-home"></i>Users</a></li>
-
+                <li class="sidebar-item"><a href="/admin/projects"><i class="fas fa-percent"></i></i>Projects</a></li>
+                <li class="sidebar-item"><a href="#"><i class="fas fa-home"></i>Users</a></li>
+                
                 <li class="sidebar-item"><a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
+                  onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                     <i class="fas fa-sign-out-alt mr-2 enlarge-mobile"></i><span class="hide-mobile">Logout</span>
-                </a></li>
-                                
+                  </a></li>
+                  
+                <li class="sidebar-item"><a href="/"><i class="fas fa-home"></i>Front end</a></li>
+
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>

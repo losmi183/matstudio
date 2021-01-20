@@ -19,8 +19,8 @@ class ProjectsTableSeeder extends Seeder
             Project::create([
                 'name' => 'PROJECT' . $i,
                 'description' => 'Hallway visualization done for a project previously shown on a courtyard image. This is our newest visualization project and is ongoing so stay tuned for more images coming soon.',
-                'image_full' => 'images/projects/'.$i.'.jpg',
-                'image_thumb' => 'images/projects/'.$i.'-thumb.jpg',
+                // 'image_full' => 'images/projects/'.$i.'.jpg',
+                // 'image_thumb' => 'images/projects/'.$i.'-thumb.jpg',
             ]);
         }
         
