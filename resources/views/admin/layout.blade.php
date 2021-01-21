@@ -34,7 +34,7 @@
       <!-- Top Navbar  -->
     <div id="top-area">
         <button title="hide/show sidebar" class="hamburger mr-3"><i class="fas fa-bars"></i></button>
-        <a style="text-decoration: none" href="/admin"><h3 class="mt-0 primary-color " >Pizza 66 Admin</h3></a> 
+        <a style="text-decoration: none" href="/admin"><h3 class="mt-0 primary-color " >Mat studio Admin panel</h3></a> 
     </div>
 
 
