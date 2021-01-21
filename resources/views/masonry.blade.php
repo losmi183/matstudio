@@ -69,7 +69,9 @@
             <div class="grid-item">
                 <div class="masonry-box">
                     <div class="masonry-img">
-                        <a href="{{ route('project', $project->id) }}"><img src="/{{ $project->photos->first()->full }}" alt=""></a>
+                        <a href="{{ route('project', $project->id) }}">
+                            <img src="/{{ $project->photos->first()->full ?? 'images/empty.jpeg'  }}" alt="">
+                        </a>
                     </div>
                     <div class="masonry-text">
                         <a href="{{ route('project', $project->id) }}">{{ $project->name }}</a>                            

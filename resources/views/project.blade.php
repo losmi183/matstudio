@@ -11,8 +11,8 @@
             <div class="col-12"><h2 class="main-title"> {{$project->name}} </h2></div>
 
             <div class="col-lg-6">
-                <div class="img-wrapper">
-                    <img class="img-fluid" src="/{{$project->photos->first()->full}}" alt="">
+                <div class="img-wrapper ">
+                    <img class="img-fluid mx-auto" src="/{{$project->photos->first()->full ?? 'images/empty.jpeg' }}" alt="">
                 </div>
 
                 <div class="thumb-wrapper">

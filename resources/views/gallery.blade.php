@@ -9,7 +9,9 @@
         @foreach ($projects as $project)
             <div class="gallery-box">
                 <div class="gallery-image">
-                    <a href="{{ route('project', $project->id) }}"><img src="/{{ $project->photos->first()->full }}" alt=""></a>
+                    <a href="{{ route('project', $project->id) }}">
+                      <img src="/{{ $project->photos->first()->full ?? 'images/empty.jpeg'   }}" alt="">
+                    </a>
                 </div>
                 <div class="gallery-text">
                     <a href="{{ route('project', $project->id) }}"><h3 class="">{{ $project->name }}</h3></a>                    

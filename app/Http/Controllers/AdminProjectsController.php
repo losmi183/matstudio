@@ -43,7 +43,7 @@ class AdminProjectsController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'description' => 'required',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1000'
         ]);
 
         // Create Porject first
