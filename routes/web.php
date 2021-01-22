@@ -24,14 +24,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/', [ProjectsController::class, 'index']);
 
-Route::get('/gallery', [App\Http\Controllers\ProjectsController::class, 'gallery'])->name('gallery');
-
-Route::get('/masonry', [App\Http\Controllers\ProjectsController::class, 'masonry'])->name('masonry');
-
-Route::get('/classic', [App\Http\Controllers\ProjectsController::class, 'classic'])->name('classic');
-
-
-
 Route::get('/project/{id}', [ProjectsController::class, 'show'])->name('project');
 
 

@@ -1,73 +1,110 @@
-@extends('layouts.app')
+@extends('layouts.basic')
 
-@section('content')
+@section('extra-css')
+    {{-- <style>
+        * { box-sizing: border-box; }
+
+        /* force scrollbar */
+        html { overflow-y: scroll; }
 
 
+        /* ---- grid ---- */
 
+        .grid {
+        background: #DDD;
+        }
 
-<div class="space-100"></div>
-<!--     
-<section id="showcase">
-  <div class="space-80"></div>
-  <div class="container-fluid text-center">
-    <h1>mat. Studio</h1>
-    <h3>Architect × CG artist</h3>
-    <p>MAT architecture visualization studio</p>
-    <a href="mailto:visualization.studio.mat@gmail.com">Contact: visualization.studio.mat@gmail.com</a>
-  </div>
-  <div class="space-80"></div>
-</section>
-<div class="space-80"></div> -->
+        /* clear fix */
+        .grid:after {
+        content: '';
+        display: block;
+        clear: both;
+        }
 
-<section id="gallery">
-  
-  <div class="container-fluid">
-    <div class="row">
-      
-      @foreach ($projects as $project)
-      <div class="col-xl-3 col-lg-4 col-md-6 col-12">
-        <div class="project2">
-            <div class="project">
-              <a href="{{ route('project', $project->id) }}">
-                <div class="img-wrapper">
-                  <img src="{{ $project->photos->first()->thumb ?? '/images/empty.jpeg' }}" alt="">
+        /* ---- .grid-item ---- */
+
+        .grid-sizer,
+        .grid-item {
+        width: 25%;
+        }
+
+        .grid-item {
+        float: left;
+        }
+
+        .grid-item img {
+        display: block;
+        max-width: 100%;
+        }
+        @media (max-width: 1199.98px) { 
+            .grid-sizer, .grid-item {
+                width: 33.333%;
+            }
+        }
+
+        @media (max-width: 767.98px) { 
+            .grid-sizer, .grid-item {
+                width: 50%;
+            }
+        }
+        @media (max-width: 575.98px) { 
+            .grid-sizer, .grid-item {
+                width: 100%;
+            }
+        }
+    </style> --}}    
+@endsection
+
+@section('content')  
+
+    <div class="space-150"></div>  
+
+    <div class="grid">
+        <div class="grid-sizer"></div>
+        @foreach ($projects as $project)
+            <div class="grid-item {{ ($loop->index == 0 OR $loop->index == 1) ? 'grid-item--width2' : '' }}">
+                <div class="masonry-box">
+                    <div class="masonry-img">
+                        <a href="{{ route('project', $project->id) }}">
+                            <img src="/{{ $project->photos->first()->full ?? 'images/empty.jpeg'  }}" alt="">
+                        </a>
+                    </div>
+                    <div class="masonry-text">
+                        <a href="{{ route('project', $project->id) }}">{{ $project->name }}</a>                            
+                    </div>
                 </div>
-              </a>
-  
-              <a href="#">
-                <div class="text-wrapper">
-                  <h3 class="text-center mt-2">{{ $project->name }}</h3>
-                </div>
-              </a>
             </div>
-          </div> {{-- col  --}}          
-        </div>  {{-- project2  --}}
+        @endforeach
+    </div>
 
-      @endforeach
 
-    </div>    {{-- Row --}}
-  </div>  {{-- container-fluid --}}
-</section>
+@endsection
 
-{{-- <section id="projects">
+@section('extra-js')
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
 
-    @foreach ($projects as $project)
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
 
-      <div class="project">
-        <div class="img-wrapper">
-          <a href="#">
-            <img src="/images/projects/{{ $project->images->first()->full }}" alt="">
-          </a>
-        </div>
-        <div class="text-wrapper">
-          <h3>{{ $project->name }}</h3>
-        </div>
-      </div>
+    <script>
 
-    @endforeach  
+        // init Masonry
+        var grid = document.querySelector('.grid');
 
-</section> --}}
+        var msnry = new Masonry( grid, {
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-sizer',
+        percentPosition: true,
+        // gutter: 10
+        });
+
+        imagesLoaded( grid ).on( 'progress', function() {
+        // layout Masonry after each image loads
+        msnry.layout();
+        });
+
+    </script>
+    
+@endsection
 
 
     
-@endsection

@@ -22,7 +22,7 @@
             <tr>
                 <td> <span class="mobile-hide">ID: </span> {{ $project->id }}</td>
                 <td> <span class="mobile-hide">Name: </span> {{ $project->name }}</td>
-                <td> <span class="mobile-hide">Image: </span> <img height="65px" src="/{{ $project->photos->first()->thumb }}" alt=""> </td>
+                <td> <span class="mobile-hide">Image: </span> <img height="65px" src="/{{ $project->photos->first()->thumb ?? 'images/empty.jpeg'   }}" alt=""> </td>
                 <td> <span class="mobile-hide">Description: </span> {{ limitText($project->description) }}</td>
                 <td> <span class="mobile-hide">Created: </span> {{ formatDate($project->created_at) }}</td>
                 <td>

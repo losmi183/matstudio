@@ -17,7 +17,7 @@ class ProjectsTableSeeder extends Seeder
         for($i=1; $i<=12; $i++) 
         {
             Project::create([
-                'name' => 'PROJECT' . $i,
+                'name' => 'Project' . $i,
                 'description' => 'Hallway visualization done for a project previously shown on a courtyard image. This is our newest visualization project and is ongoing so stay tuned for more images coming soon.',
                 // 'image_full' => 'images/projects/'.$i.'.jpg',
                 // 'image_thumb' => 'images/projects/'.$i.'-thumb.jpg',
