@@ -68,10 +68,16 @@
                         <a href="{{ route('project', $project->id) }}">
                             <img src="/{{ $project->photos->first()->full ?? 'images/empty.jpeg'  }}" alt="">
                         </a>
+                        
                     </div>
-                    <div class="masonry-text">
+                    {{-- <div class="masonry-text">
+                        <a href="{{ route('project', $project->id) }}">{{ $project->name }}</a>                            
+                    </div> --}}
+
+                    <div class="masonry-text2">
                         <a href="{{ route('project', $project->id) }}">{{ $project->name }}</a>                            
                     </div>
+                    
                 </div>
             </div>
         @endforeach
