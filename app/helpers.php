@@ -9,6 +9,11 @@ function formatDate($time)
 
 function limitText($str, $n = 15)
 {
-    return Str::words($str, $n, '...');
-    
+    return Str::words($str, $n, '...');    
+}
+
+
+function orderNumber($order, $count)
+{
+    return $count - $order + 1;
 }

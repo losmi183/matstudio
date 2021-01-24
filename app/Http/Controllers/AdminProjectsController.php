@@ -17,9 +17,15 @@ class AdminProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::with('photos')->paginate(15);
+        $projects = Project::with('photos')
+        ->orderBy('order', 'DESC')
+        ->paginate(15);
+        
+        $count = Project::count();
 
-        return view('admin.projects.index', compact('projects'));
+        $orders = Project::pluck('order')->sortDesc();
+
+        return view('admin.projects.index', compact('projects', 'count', 'orders'));
     }
 
     /**
@@ -182,4 +188,56 @@ class AdminProjectsController extends Controller
 
         return back()->with('success', 'Photo deleted');
     }
+
+    /***
+     * Change projects ids
+     */
+    public function changePosition(Request $request)
+    {
+        // return $request->all();
+        // 1 Case, $currentId == new id , nothing heppend
+        if( $request->current_order == $request->new_order ) {
+            return back();
+        }
+
+        $currentOrder = $request->current_order;
+        $newOrder = $request->new_order;
+        // First taking current project in memory
+       $currentProject = Project::where('order', $currentOrder)->first();
+
+        if($currentOrder > $newOrder) {
+            $projects = Project::whereBetween('order', [$newOrder, $currentOrder - 1])->orderBy('order', 'DESC')->get();
+
+            foreach($projects as $project)
+            {
+                $project->order++;
+                $project->save();       
+            }  
+            $currentProject->order = $newOrder;
+            $currentProject->save();
+        } 
+
+        if($currentOrder < $newOrder) {
+            $projects = Project::whereBetween('order', [$currentOrder + 1, $newOrder])->orderBy('order', 'DESC')->get();
+
+            foreach($projects as $project)
+            {
+                $project->order--;
+                $project->save();       
+            }  
+            $currentProject->order = $newOrder;
+            $currentProject->save();
+        } 
+
+        return back();
+    }
+
+    public function changeSize(Request $request)
+    {
+        $project = Project::find($request->id);
+        $project->size = $request->size;
+        $project->save();
+        return back();
+    }
+
 }

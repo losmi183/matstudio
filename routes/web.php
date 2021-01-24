@@ -36,6 +36,11 @@ Route::get('/admin', function() {
 
 Route::resource('/admin/projects', AdminProjectsController::class);
 
+Route::post('/changePosition', [AdminProjectsController::class, 'changePosition']);
+Route::post('/changeSize', [AdminProjectsController::class, 'changeSize']);
+
+// Photo Intervention
 Route::post('/admin/projects/{id}/addPhoto', [AdminProjectsController::class, 'addPhoto']);
 
 Route::delete('/admin/projects/{id}/removePhoto', [AdminProjectsController::class, 'removePhoto']);
+

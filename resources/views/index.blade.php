@@ -62,12 +62,15 @@
     <div class="grid">
         <div class="grid-sizer"></div>
         @foreach ($projects as $project)
-            <div class="grid-item {{ ($loop->index == 0 OR $loop->index == 1) ? 'grid-item--width2' : '' }}">
+
+            {{-- <div class="grid-item {{ ($loop->index == 0 OR $loop->index == 1) ? 'grid-item--width2' : '' }}"> --}}
+            <div class="grid-item {{ $project->size == 'large' ? 'grid-item--width2' : '' }}">
                 <div class="masonry-box">
                     <div class="masonry-img">
-                        <a href="{{ route('project', $project->id) }}">
+                        {{-- <a href="{{ route('project', $project->id) }}"> --}}
+                        {{-- <a href="#"> --}}
                             <img src="/{{ $project->photos->first()->full ?? 'images/empty.jpeg'  }}" alt="">
-                        </a>
+                        {{-- </a> --}}
                         
                     </div>
                     {{-- <div class="masonry-text">
@@ -76,6 +79,10 @@
 
                     <div class="masonry-text2">
                         <a href="{{ route('project', $project->id) }}">{{ $project->name }}</a>                            
+                    </div>
+
+                    <div class="box-footer">
+                        <a href="{{ route('project', $project->id) }}" class="btn btn-outline-secondary btn-sm btn-block my-1">Open project  </a>
                     </div>
                     
                 </div>
@@ -93,22 +100,57 @@
 
     <script>
 
-        // init Masonry
+        // Select grid container
         var grid = document.querySelector('.grid');
+        // Select all cells
+        var gridItems = document.querySelectorAll('.grid-item');
 
+        // init Masonry
         var msnry = new Masonry( grid, {
-        itemSelector: '.grid-item',
-        columnWidth: '.grid-sizer',
-        percentPosition: true,
-        // gutter: 10
+            itemSelector: '.grid-item',
+            columnWidth: '.grid-sizer',
+            percentPosition: true,
+            // gutter: 10
         });
 
+        // Reload gallery when change screen width, using imagesLoaded function from imagesloaded library
         imagesLoaded( grid ).on( 'progress', function() {
-        // layout Masonry after each image loads
-        msnry.layout();
+            // layout Masonry after each image loads
+            msnry.layout();
+        });
+
+        // Each element, on click toggle class for wouble width
+        gridItems.forEach(element => {
+            element.addEventListener('click', function() {
+
+                if(element.classList.contains('grid-item--width2')) 
+                {
+                    element.classList.remove('grid-item--width2');
+                }
+                else 
+                {
+                    element.classList.add('grid-item--width2');
+                }
+
+                // element.classList.toggle('grid-item--width2');
+                // element.classList.toggle('grid-item');
+                msnry.layout();
+            });
         });
 
     </script>
+
+    {{-- <script>
+        var allBoxes = document.querySelectorAll('.grid-item');
+        console.log(allBoxes);
+
+        allBoxes.forEach(element => {
+            element.addEventListener('click', function() {
+                element.classList.add("grid-item--width2");
+            })
+        })
+
+    </script> --}}
     
 @endsection
 

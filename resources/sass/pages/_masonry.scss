@@ -29,7 +29,7 @@ width: 25%;
 }
 
 .grid-item--width2 {
-    width: 50%;
+    width: 50% !important;
 }
 
 .grid-item {
@@ -40,15 +40,35 @@ float: left;
 display: block;
 max-width: 100%;
 }
+
+/**
+* When click enlarge image
+*/
+
+  
+.grid-item:hover{
+    cursor: zoom-in;
+}
+.grid-item--width2:hover {
+    cursor: zoom-out;
+}
+
+
 @media (max-width: 1199.98px) { 
     .grid-sizer, .grid-item {
         width: 33.333%;
+    }
+    .grid-item--width2 {
+        width: 66.666% !important;
     }
 }
 
 @media (max-width: 767.98px) { 
     .grid-sizer, .grid-item {
         width: 50%;
+    }
+    .grid-item--width2 {
+        width: 100% !important;
     }
 }
 @media (max-width: 575.98px) { 
@@ -69,7 +89,7 @@ max-width: 100%;
 .masonry-box {
     position: relative;
     // Ako imamo text ispod onda je 0 10px jer text daje prostor ne treba padding
-    padding: 10px;
+    padding: 0 10px;
 
     .masonry-text, .masonry-text2 {
         opacity: 0;
@@ -109,7 +129,7 @@ max-width: 100%;
     // text-align: center;
     position: absolute;
 
-    bottom: 10px; 
+    bottom: 30px; 
     left: 50%;
 
     transform: translateX(-50%);

@@ -11278,7 +11278,7 @@ html {
 }
 
 .grid-item--width2 {
-  width: 50%;
+  width: 50% !important;
 }
 
 .grid-item {
@@ -11290,10 +11290,26 @@ html {
   max-width: 100%;
 }
 
+/**
+* When click enlarge image
+*/
+
+.grid-item:hover {
+  cursor: zoom-in;
+}
+
+.grid-item--width2:hover {
+  cursor: zoom-out;
+}
+
 @media (max-width: 1199.98px) {
   .grid-sizer,
   .grid-item {
     width: 33.333%;
+  }
+
+  .grid-item--width2 {
+    width: 66.666% !important;
   }
 }
 
@@ -11301,6 +11317,10 @@ html {
   .grid-sizer,
   .grid-item {
     width: 50%;
+  }
+
+  .grid-item--width2 {
+    width: 100% !important;
   }
 }
 
@@ -11321,7 +11341,7 @@ html {
 
 .masonry-box {
   position: relative;
-  padding: 10px;
+  padding: 0 10px;
 }
 
 .masonry-box .masonry-text,
@@ -11363,7 +11383,7 @@ html {
 
 .masonry-text2 {
   position: absolute;
-  bottom: 10px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
 }

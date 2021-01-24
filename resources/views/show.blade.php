@@ -8,7 +8,6 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-12"><h2 class="main-title"> {{$project->name}} </h2></div>
 
             <div class="col-lg-6">
                 <div class="img-wrapper ">
@@ -25,7 +24,10 @@
 
             </div>
 
-            <div class="col-lg-4">                    
+            <div class="col-lg-6">          
+                
+                <div class="col-12"><h2 class="main-title"> {{$project->name}} </h2></div>
+
                 <p> {{$project->description}} </p>
             </div>
         </div>
