@@ -1948,6 +1948,8 @@ $(function () {
   //         if($(window).scrollTop() + $(window).height() > $(document).height()) {
 
   $('#loadMore').click(function () {
+    alert(n);
+
     if (i < n) {
       $.get($list[i], function (response) {
         var newItems = $(response).find(".grid-item");
