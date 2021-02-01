@@ -1,5 +1,5 @@
 $(function() {
-    $('ul.pagination').hide();
+    // $('ul.pagination').hide();
     // For placing grid-items 
     var $container = $(".grid");
     // Selecting all a.link elements from pagination

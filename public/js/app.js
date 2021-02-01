@@ -1932,8 +1932,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ (() => {
 
 $(function () {
-  $('ul.pagination').hide(); // For placing grid-items 
-
+  // $('ul.pagination').hide();
+  // For placing grid-items 
   var $container = $(".grid"); // Selecting all a.link elements from pagination
 
   var $list = $('.page-item').not('.disabled').not('.active').not(":last").find("a");
