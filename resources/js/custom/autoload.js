@@ -4,24 +4,24 @@ $(function() {
     var $container = $(".grid");
     // Selecting all a.link elements from pagination
     var $list = $('.page-item').not('.disabled').not('.active').not(":last").find( "a" );
+
+    console.log($list);
+
     // Number of a.link elements
     var n = $list.length;
     var i = 0;
 
-    // var userScrolled = false;
+    var userScrolled = false;
 
-    // $(window).scroll(function() {
-    //     userScrolled = true;
-    // });
+    $(window).scroll(function() {
+        userScrolled = true;
+    });
 
-    // setInterval(function() {
-    //     if (userScrolled) {
+    setInterval(function() {
+        if (userScrolled) {
 
-    //         if($(window).scrollTop() + $(window).height() > $(document).height()) {
-        $('#loadMore').click(function() {
-
-            alert(n);
-
+            if($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
+            
             if(i < n) {                    
                 $.get($list[i], function(response) {
     
@@ -69,17 +69,14 @@ $(function() {
                 }); // End of ajax call for nex pagination page load 
             } // End of If < n
             
-        });
-        
-            
 
 
-    //     } // End of if
+        } // End of if
 
 
-    //         userScrolled = false;
-    //     }
-    // }, 400);
+            userScrolled = false;
+        }
+    }, 400);
 
     // // When scroll to bottom of screen Load items
     // $(window).scroll(function() {
