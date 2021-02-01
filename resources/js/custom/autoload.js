@@ -8,16 +8,17 @@ $(function() {
     var n = $list.length;
     var i = 0;
 
-    var userScrolled = false;
+    // var userScrolled = false;
 
-    $(window).scroll(function() {
-        userScrolled = true;
-    });
+    // $(window).scroll(function() {
+    //     userScrolled = true;
+    // });
 
-    setInterval(function() {
-        if (userScrolled) {
+    // setInterval(function() {
+    //     if (userScrolled) {
 
-            if($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
+    //         if($(window).scrollTop() + $(window).height() > $(document).height()) {
+        $('#loadMore').click(function() {
             
             if(i < n) {                    
                 $.get($list[i], function(response) {
@@ -66,14 +67,17 @@ $(function() {
                 }); // End of ajax call for nex pagination page load 
             } // End of If < n
             
+        });
+        
+            
 
 
-        } // End of if
+    //     } // End of if
 
 
-            userScrolled = false;
-        }
-    }, 400);
+    //         userScrolled = false;
+    //     }
+    // }, 400);
 
     // // When scroll to bottom of screen Load items
     // $(window).scroll(function() {

@@ -1939,59 +1939,59 @@ $(function () {
   var $list = $('.page-item').not('.disabled').not('.active').not(":last").find("a"); // Number of a.link elements
 
   var n = $list.length;
-  var i = 0;
-  var userScrolled = false;
-  $(window).scroll(function () {
-    userScrolled = true;
-  });
-  setInterval(function () {
-    if (userScrolled) {
-      if ($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
-        if (i < n) {
-          $.get($list[i], function (response) {
-            var newItems = $(response).find(".grid-item");
-            newItems.each(function (index, element) {
-              // console.log(element);
-              $container.append(element);
-            }); // increment i 
+  var i = 0; // var userScrolled = false;
+  // $(window).scroll(function() {
+  //     userScrolled = true;
+  // });
+  // setInterval(function() {
+  //     if (userScrolled) {
+  //         if($(window).scrollTop() + $(window).height() > $(document).height()) {
 
-            i++;
-            /*
-            * Init Masonry again after loading new items
-            */
-            // Select grid container
+  $('#loadMore').click(function () {
+    if (i < n) {
+      $.get($list[i], function (response) {
+        var newItems = $(response).find(".grid-item");
+        newItems.each(function (index, element) {
+          // console.log(element);
+          $container.append(element);
+        }); // increment i 
 
-            var grid = document.querySelector('.grid'); // Select all cells
+        i++;
+        /*
+        * Init Masonry again after loading new items
+        */
+        // Select grid container
 
-            var gridItems = document.querySelectorAll('.grid-item'); // init Masonry
+        var grid = document.querySelector('.grid'); // Select all cells
 
-            var msnry = new Masonry(grid, {
-              itemSelector: '.grid-item',
-              columnWidth: '.grid-sizer',
-              percentPosition: true // gutter: 10
+        var gridItems = document.querySelectorAll('.grid-item'); // init Masonry
 
-            }); // Reload gallery when change screen width, using imagesLoaded function from imagesloaded library
+        var msnry = new Masonry(grid, {
+          itemSelector: '.grid-item',
+          columnWidth: '.grid-sizer',
+          percentPosition: true // gutter: 10
 
-            imagesLoaded(grid).on('progress', function () {
-              // layout Masonry after each image loads
-              msnry.layout();
-            }); // First remove old event listeners from all grid-items
+        }); // Reload gallery when change screen width, using imagesLoaded function from imagesloaded library
 
-            $(".grid-item").off("click"); // Add new event listeners
+        imagesLoaded(grid).on('progress', function () {
+          // layout Masonry after each image loads
+          msnry.layout();
+        }); // First remove old event listeners from all grid-items
 
-            $('.grid-item').click(function () {
-              $(this).toggleClass('grid-item--width2');
-              msnry.layout();
-            }); // End of init grid section
-          }); // End of ajax call for nex pagination page load 
-        } // End of If < n
+        $(".grid-item").off("click"); // Add new event listeners
 
-      } // End of if
+        $('.grid-item').click(function () {
+          $(this).toggleClass('grid-item--width2');
+          msnry.layout();
+        }); // End of init grid section
+      }); // End of ajax call for nex pagination page load 
+    } // End of If < n
 
-
-      userScrolled = false;
-    }
-  }, 400); // // When scroll to bottom of screen Load items
+  }); //     } // End of if
+  //         userScrolled = false;
+  //     }
+  // }, 400);
+  // // When scroll to bottom of screen Load items
   // $(window).scroll(function() {
   // }); // End of window scrool
 }); // JQuery document ready

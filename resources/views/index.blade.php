@@ -109,6 +109,8 @@
     </div>
     {{ $projects->links() }}
 
+    <button id="loadMore">Load More</button>
+
 @endsection
 
 @section('js-cdn')
