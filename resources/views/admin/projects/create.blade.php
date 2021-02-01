@@ -8,7 +8,7 @@
 
     <div class="row">
         <div class="col-xl-6 col-lg-8 col-md-12 offset-xl-3 offset-lg-2">
-            <div class="card mb-5   ">
+            <div class="card mb-5">
                 {{-- <div class="card-header">
                     Project Create
                 </div> --}}
@@ -29,12 +29,10 @@
                             <label class="d-block">Photo</label>
                             <input type="file" name="images[]">
                         </div>
-
                         <div class="form-group">
                             <label class="d-block">Photo</label>
                             <input type="file" name="images[]">
                         </div>
-
                         <div class="form-group">
                             <label class="d-block">Photo</label>
                             <input type="file" name="images[]">
@@ -46,13 +44,11 @@
                             <div class="form-group">
                                 <label class="d-block">Photo</label>
                                 <input type="file" name="images[]">
-                            </div>
-    
+                            </div>    
                             <div class="form-group">
                                 <label class="d-block">Photo</label>
                                 <input type="file" name="images[]">
-                            </div>
-    
+                            </div>    
                             <div class="form-group">
                                 <label class="d-block">Photo</label>
                                 <input type="file" name="images[]">
@@ -65,19 +61,16 @@
                             <div class="form-group">
                                 <label class="d-block">Photo</label>
                                 <input type="file" name="images[]">
-                            </div>
-    
+                            </div>    
                             <div class="form-group">
                                 <label class="d-block">Photo</label>
                                 <input type="file" name="images[]">
-                            </div>
-    
+                            </div>    
                             <div class="form-group">
                                 <label class="d-block">Photo</label>
                                 <input type="file" name="images[]">
                             </div>                            
                         </div>
-
                     
 
                         <div class="d-flex justify-content-between mt-5">
@@ -93,8 +86,5 @@
     </div>
 
 </div>
-
-
-
     
 @endsection

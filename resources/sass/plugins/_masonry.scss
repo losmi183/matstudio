@@ -1,0 +1,76 @@
+/*
+* GRID RESPONSIVNESS SETUP
+*/
+
+* { box-sizing: border-box; }
+
+/* force scrollbar */
+html { overflow-y: scroll; }
+
+
+/* ---- grid ---- */
+
+// .grid {    
+//     // background: #DDD;
+// }
+
+/* clear fix */
+.grid:after {
+content: '';
+display: block;
+clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+width: 25%;
+}
+
+.grid-item--width2 {
+    width: 50% !important;
+}
+
+.grid-item {
+float: left;
+}
+
+.grid-item img {
+display: block;
+max-width: 100%;
+}
+
+/**
+* When click enlarge image
+*/  
+.grid-item img:hover{
+    cursor: zoom-in;
+}
+.grid-item--width2 img:hover {
+    cursor: zoom-out;
+}
+
+
+@media (max-width: 1199.98px) { 
+    .grid-sizer, .grid-item {
+        width: 33.333%;
+    }
+    .grid-item--width2 {
+        width: 66.666% !important;
+    }
+}
+
+@media (max-width: 767.98px) { 
+    .grid-sizer, .grid-item {
+        width: 50%;
+    }
+    .grid-item--width2 {
+        width: 100% !important;
+    }
+}
+@media (max-width: 575.98px) { 
+    .grid-sizer, .grid-item {
+        width: 100%;
+    }
+}

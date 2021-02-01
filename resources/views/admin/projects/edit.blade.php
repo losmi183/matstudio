@@ -13,8 +13,9 @@
                     Project Data Edit
                 </div>
                 <div class="card-body">
-                    <form action="/admin/projects" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PATCH')
                         <div class="form-group">
                             <label>Project name</label>
                             <input name="name" type="text" class="form-control" value="{{ old('name') ?? $project->name }} ">
@@ -22,7 +23,7 @@
                         
                         <div class="form-group">
                             <label>Project description</label>
-                            <textarea name="description" class="form-control" cols="30" rows="4">  value="{{ old('description') ?? $project->description }} </textarea>
+                            <textarea name="description" class="form-control" cols="30" rows="4">{{old('description') ?? $project->description }}</textarea>
                         </div>
 
                         <div class="d-flex justify-content-between mt-5">

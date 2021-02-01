@@ -25,6 +25,7 @@
 @import 'elements/table';
 
 // Boxes
+@import 'boxes/masonry-box';
 
 // Components
 @import 'components/footer';
@@ -33,7 +34,9 @@
 
 // Pages
 @import 'pages/single-show';
-@import 'pages/masonry';
+
+// Plugins
+@import 'plugins/masonry';
 
 // Admin
 @import 'admin/layout';

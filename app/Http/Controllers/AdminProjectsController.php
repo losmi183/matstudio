@@ -11,9 +11,7 @@ use Intervention\Image\Facades\Image;
 class AdminProjectsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Fetching projects with photos  
      */
     public function index()
     {
@@ -58,34 +56,41 @@ class AdminProjectsController extends Controller
             'description' => $request->description,
         ]);
 
+        // Set order same as id
+        $project->order = $project->id;
+        $project->save();
+
             
         // array of temp images
-        $images = $request->file('images');
+        if($request->hasFile('images')) {
 
-        $i = 1;
-        foreach($images as $image)
-        {
-            // Get extension of uploading file
-            $extension = $image->getClientOriginalExtension();    
-            // Saving full size image and returning path / filename
-            $image_full = $image->store('images/projects');  
-            // Taking that full size image
-            $image = Image::make($image_full);
-            
-
-            // Crop image and resize image
-            $image->fit(600, 600);
-            // Unique_name for thumbnail image
-            $image_thumb = 'images/projects/' . time() . $i++ . '.' . $extension;            
-            // save image in same folder with thumb name 
-            $image->save($image_thumb, 70);
-
-            // Create separate Image in database for each file
-            Photo::create([
-                'full' => $image_full,
-                'thumb' => $image_thumb,
-                'project_id' => $project->id
-            ]);
+            $images = $request->file('images');
+    
+            $i = 1;
+            foreach($images as $image)
+            {
+                // Get extension of uploading file
+                $extension = $image->getClientOriginalExtension();    
+                // Saving full size image and returning path / filename
+                $image_full = $image->store('images/projects');  
+                // Taking that full size image
+                $image = Image::make($image_full);
+                
+    
+                // Crop image and resize image
+                $image->fit(600, 600);
+                // Unique_name for thumbnail image
+                $image_thumb = 'images/projects/' . time() . $i++ . '.' . $extension;            
+                // save image in same folder with thumb name 
+                $image->save($image_thumb, 70);
+    
+                // Create separate Image in database for each file
+                Photo::create([
+                    'full' => $image_full,
+                    'thumb' => $image_thumb,
+                    'project_id' => $project->id
+                ]);
+            }
         }
 
         return redirect()->route('projects.index')->with('success', 'Project Created');
@@ -122,9 +127,12 @@ class AdminProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        $project->name = $request->name;
+        $project->description = $request->description;
+        $project->save();
+        return back()->with('success', 'Project data updated');
     }
 
     /**
@@ -136,98 +144,14 @@ class AdminProjectsController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    /**
-     * 
-     * Custom Methods
-     * 
-     */
-    public function addPhoto(Request $request, $id)
-    {
-        if( ! $request->hasFile('image') ) {
-            return back()->with('error', 'Please select image to upload');
-        }
-
-        $image = $request->file('image');
-
-        // Get extension of uploading file
-        $extension = $image->getClientOriginalExtension();    
-        // Saving full size image and returning path / filename
-        $image_full = $image->store('images/projects');  
-        // Taking that full size image
-        $image = Image::make($image_full);
-        
-
-        // Crop image and resize image
-        $image->fit(600, 600);
-        // Unique_name for thumbnail image
-        $image_thumb = 'images/projects/' . time() . '.' . $extension;            
-        // save image in same folder with thumb name 
-        $image->save($image_thumb, 70);
-
-        // Create separate Image in database for each file
-        Photo::create([
-            'full' => $image_full,
-            'thumb' => $image_thumb,
-            'project_id' => $id
-        ]);
-    
-
-        return back()->with('success', 'Photo added');
-    }
-
-
-    public function removePhoto($id)
-    {
-        $photo = Photo::find($id);
-
-        Storage::delete([$photo->full, $photo->thumb]);
-
-        $photo->delete();
-
-        return back()->with('success', 'Photo deleted');
-    }
+    } 
 
     /***
-     * Change projects ids
+     * Change project position, calling static ,ethod defined in model
      */
     public function changePosition(Request $request)
     {
-        // return $request->all();
-        // 1 Case, $currentId == new id , nothing heppend
-        if( $request->current_order == $request->new_order ) {
-            return back();
-        }
-
-        $currentOrder = $request->current_order;
-        $newOrder = $request->new_order;
-        // First taking current project in memory
-       $currentProject = Project::where('order', $currentOrder)->first();
-
-        if($currentOrder > $newOrder) {
-            $projects = Project::whereBetween('order', [$newOrder, $currentOrder - 1])->orderBy('order', 'DESC')->get();
-
-            foreach($projects as $project)
-            {
-                $project->order++;
-                $project->save();       
-            }  
-            $currentProject->order = $newOrder;
-            $currentProject->save();
-        } 
-
-        if($currentOrder < $newOrder) {
-            $projects = Project::whereBetween('order', [$currentOrder + 1, $newOrder])->orderBy('order', 'DESC')->get();
-
-            foreach($projects as $project)
-            {
-                $project->order--;
-                $project->save();       
-            }  
-            $currentProject->order = $newOrder;
-            $currentProject->save();
-        } 
+        Project::changeOrder($request->current_order, $request->new_order);       
 
         return back();
     }
@@ -238,6 +162,5 @@ class AdminProjectsController extends Controller
         $project->size = $request->size;
         $project->save();
         return back();
-    }
-
+    }   
 }

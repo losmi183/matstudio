@@ -12,13 +12,12 @@ require('./bootstrap');
 
 require('./custom/navbar');
 require('./custom/project-gallery');
-require('./custom/admin-layout');
-require('./custom/admin-projects');
 require('./custom/masonry');
+require('./custom/autoload');
 
 
 
-window.Vue = require('vue').default;
+// window.Vue = require('vue').default;
 
 /**
  * The following block of code may be used to automatically register your

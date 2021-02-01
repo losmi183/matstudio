@@ -14,7 +14,7 @@ class PhotosTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i=1; $i<=12; $i++) 
+        for($i=1; $i<=28; $i++) 
         {
             Photo::create([
                 'full' => 'images/projects/' . $i . '.jpg',

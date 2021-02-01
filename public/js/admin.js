@@ -1834,53 +1834,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./resources/js/app.js":
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/**
- * Custom JS vanila and Jquery
- */
-
-
-__webpack_require__(/*! ./custom/navbar */ "./resources/js/custom/navbar.js");
-
-__webpack_require__(/*! ./custom/project-gallery */ "./resources/js/custom/project-gallery.js");
-
-__webpack_require__(/*! ./custom/masonry */ "./resources/js/custom/masonry.js");
-
-__webpack_require__(/*! ./custom/autoload */ "./resources/js/custom/autoload.js"); // window.Vue = require('vue').default;
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-// const app = new Vue({
-//     el: '#app',
-// });
-
-/***/ }),
-
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -1925,142 +1878,36 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/custom/autoload.js":
-/*!*****************************************!*\
-  !*** ./resources/js/custom/autoload.js ***!
-  \*****************************************/
-/***/ (() => {
-
-$(function () {
-  $('ul.pagination').hide(); // For placing grid-items 
-
-  var $container = $(".grid"); // Selecting all a.link elements from pagination
-
-  var $list = $('.page-item').not('.disabled').not('.active').not(":last").find("a"); // Number of a.link elements
-
-  var n = $list.length;
-  var i = 0;
-  var userScrolled = false;
-  $(window).scroll(function () {
-    userScrolled = true;
-  });
-  setInterval(function () {
-    if (userScrolled) {
-      if ($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
-        if (i < n) {
-          $.get($list[i], function (response) {
-            var newItems = $(response).find(".grid-item");
-            newItems.each(function (index, element) {
-              // console.log(element);
-              $container.append(element);
-            }); // increment i 
-
-            i++;
-            /*
-            * Init Masonry again after loading new items
-            */
-            // Select grid container
-
-            var grid = document.querySelector('.grid'); // Select all cells
-
-            var gridItems = document.querySelectorAll('.grid-item'); // init Masonry
-
-            var msnry = new Masonry(grid, {
-              itemSelector: '.grid-item',
-              columnWidth: '.grid-sizer',
-              percentPosition: true // gutter: 10
-
-            }); // Reload gallery when change screen width, using imagesLoaded function from imagesloaded library
-
-            imagesLoaded(grid).on('progress', function () {
-              // layout Masonry after each image loads
-              msnry.layout();
-            }); // First remove old event listeners from all grid-items
-
-            $(".grid-item").off("click"); // Add new event listeners
-
-            $('.grid-item').click(function () {
-              $(this).toggleClass('grid-item--width2');
-              msnry.layout();
-            }); // End of init grid section
-          }); // End of ajax call for nex pagination page load 
-        } // End of If < n
-
-      } // End of if
-
-
-      userScrolled = false;
-    }
-  }, 400); // // When scroll to bottom of screen Load items
-  // $(window).scroll(function() {
-  // }); // End of window scrool
-}); // JQuery document ready
-
-/***/ }),
-
-/***/ "./resources/js/custom/masonry.js":
-/*!****************************************!*\
-  !*** ./resources/js/custom/masonry.js ***!
-  \****************************************/
+/***/ "./resources/js/custom/admin-layout.js":
+/*!*********************************************!*\
+  !*** ./resources/js/custom/admin-layout.js ***!
+  \*********************************************/
 /***/ (() => {
 
 $(document).ready(function () {
-  // Select grid container
-  var grid = document.querySelector('.grid'); // Select all cells
-
-  var gridItems = document.querySelectorAll('.grid-item'); // init Masonry
-
-  var msnry = new Masonry(grid, {
-    itemSelector: '.grid-item',
-    columnWidth: '.grid-sizer',
-    percentPosition: true // gutter: 10
-
-  }); // Reload gallery when change screen width, using imagesLoaded function from imagesloaded library
-
-  imagesLoaded(grid).on('progress', function () {
-    // layout Masonry after each image loads
-    msnry.layout();
-  });
-  $('.grid-item').click(function () {
-    $(this).toggleClass('grid-item--width2');
-    msnry.layout();
+  $('.hamburger').click(function () {
+    $('#sidebar').animate({
+      width: 'toggle'
+    }, 300);
   });
 });
 
 /***/ }),
 
-/***/ "./resources/js/custom/navbar.js":
-/*!***************************************!*\
-  !*** ./resources/js/custom/navbar.js ***!
-  \***************************************/
-/***/ (() => {
-
-window.onscroll = function () {
-  scrollFunction();
-};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-    document.getElementById("navbar").style.padding = "8px 16px";
-    document.getElementById("logo").style.height = "35px";
-  } else {
-    document.getElementById("navbar").style.padding = "16px 16px";
-    document.getElementById("logo").style.height = "45px";
-  }
-}
-
-/***/ }),
-
-/***/ "./resources/js/custom/project-gallery.js":
-/*!************************************************!*\
-  !*** ./resources/js/custom/project-gallery.js ***!
-  \************************************************/
+/***/ "./resources/js/custom/admin-projects.js":
+/*!***********************************************!*\
+  !*** ./resources/js/custom/admin-projects.js ***!
+  \***********************************************/
 /***/ (() => {
 
 $(document).ready(function () {
-  $('.thumb img').click(function () {
-    var src = $(this).attr('data-full');
-    $('.img-wrapper img').attr('src', src);
+  $('.add-second').click(function () {
+    $('.second-group').show();
+    $(this).hide();
+  });
+  $('.add-third').click(function () {
+    $('.third-group').show();
+    $(this).hide();
   });
 });
 
@@ -34540,19 +34387,6 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
 /***/ "./node_modules/popper.js/dist/esm/popper.js":
 /*!***************************************************!*\
   !*** ./node_modules/popper.js/dist/esm/popper.js ***!
@@ -37406,12 +37240,6 @@ process.umask = function() { return 0; };
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
-/******/ 	// the startup function
-/******/ 	// It's empty as some runtime module handles the default behavior
-/******/ 	__webpack_require__.x = x => {}
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
@@ -37462,98 +37290,22 @@ process.umask = function() { return 0; };
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/jsonp chunk loading */
-/******/ 	(() => {
-/******/ 		// no baseURI
-/******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// Promise = chunk loading, 0 = chunk loaded
-/******/ 		var installedChunks = {
-/******/ 			"/js/app": 0
-/******/ 		};
-/******/ 		
-/******/ 		var deferredModules = [
-/******/ 			["./resources/js/app.js"],
-/******/ 			["./resources/sass/app.scss"]
-/******/ 		];
-/******/ 		// no chunk on demand loading
-/******/ 		
-/******/ 		// no prefetching
-/******/ 		
-/******/ 		// no preloaded
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 		
-/******/ 		var checkDeferredModules = x => {};
-/******/ 		
-/******/ 		// install a JSONP callback for chunk loading
-/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
-/******/ 			var [chunkIds, moreModules, runtime, executeModules] = data;
-/******/ 			// add "moreModules" to the modules object,
-/******/ 			// then flag all "chunkIds" as loaded and fire callback
-/******/ 			var moduleId, chunkId, i = 0, resolves = [];
-/******/ 			for(;i < chunkIds.length; i++) {
-/******/ 				chunkId = chunkIds[i];
-/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
-/******/ 					resolves.push(installedChunks[chunkId][0]);
-/******/ 				}
-/******/ 				installedChunks[chunkId] = 0;
-/******/ 			}
-/******/ 			for(moduleId in moreModules) {
-/******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
-/******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
-/******/ 				}
-/******/ 			}
-/******/ 			if(runtime) runtime(__webpack_require__);
-/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
-/******/ 			while(resolves.length) {
-/******/ 				resolves.shift()();
-/******/ 			}
-/******/ 		
-/******/ 			// add entry modules from loaded chunk to deferred list
-/******/ 			if(executeModules) deferredModules.push.apply(deferredModules, executeModules);
-/******/ 		
-/******/ 			// run deferred modules when all chunks ready
-/******/ 			return checkDeferredModules();
-/******/ 		}
-/******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
-/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
-/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
-/******/ 		
-/******/ 		function checkDeferredModulesImpl() {
-/******/ 			var result;
-/******/ 			for(var i = 0; i < deferredModules.length; i++) {
-/******/ 				var deferredModule = deferredModules[i];
-/******/ 				var fulfilled = true;
-/******/ 				for(var j = 1; j < deferredModule.length; j++) {
-/******/ 					var depId = deferredModule[j];
-/******/ 					if(installedChunks[depId] !== 0) fulfilled = false;
-/******/ 				}
-/******/ 				if(fulfilled) {
-/******/ 					deferredModules.splice(i--, 1);
-/******/ 					result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
-/******/ 				}
-/******/ 			}
-/******/ 			if(deferredModules.length === 0) {
-/******/ 				__webpack_require__.x();
-/******/ 				__webpack_require__.x = x => {};
-/******/ 			}
-/******/ 			return result;
-/******/ 		}
-/******/ 		var startup = __webpack_require__.x;
-/******/ 		__webpack_require__.x = () => {
-/******/ 			// reset startup function so it can be called again when more startup code is added
-/******/ 			__webpack_require__.x = startup || (x => {});
-/******/ 			return (checkDeferredModules = checkDeferredModulesImpl)();
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /************************************************************************/
-/******/ 	// run startup
-/******/ 	return __webpack_require__.x();
+(() => {
+/*!*******************************!*\
+  !*** ./resources/js/admin.js ***!
+  \*******************************/
+/**
+ * 
+ * File collect all JS files for admin layout
+ * 
+ */
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./custom/admin-layout */ "./resources/js/custom/admin-layout.js");
+
+__webpack_require__(/*! ./custom/admin-projects */ "./resources/js/custom/admin-projects.js");
+})();
+
 /******/ })()
 ;

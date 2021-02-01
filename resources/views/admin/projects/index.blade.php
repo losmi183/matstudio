@@ -73,7 +73,7 @@
                 <td>
                     <form action="" >
                         <a href="/admin/projects/{{ $project->id }}/edit" class="btn btn-primary mb-1">Edit</a>
-                        <button class="btn btn-danger mb-1">Delete</button>
+                        {{-- <button class="btn btn-danger mb-1">Delete</button> --}}
                     </form>
                 </td>
             </tr>

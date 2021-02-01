@@ -9,7 +9,7 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        $projects = Project::with('photos')->orderBy('order', 'DESC')->get();
+        $projects = Project::with('photos')->orderBy('order', 'DESC')->paginate(12);
 
         return view('index', compact('projects'));
     }
@@ -23,5 +23,4 @@ class ProjectsController extends Controller
 
         return view('show', compact('project'));
     }
-
 }

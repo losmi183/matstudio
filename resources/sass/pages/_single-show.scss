@@ -8,10 +8,8 @@
     }
 
     .img-wrapper {
-        border: 2px solid #ccc;
-        padding: 15px;
+        // padding: 15px;
         margin-bottom: 15px;
-        box-shadow: 2px 2px 8px 2px #888888;  
         img {
             cursor: zoom-in;
         }       
@@ -19,13 +17,17 @@
 
     .thumb-wrapper {
         display: flex;
-        // justify-content: space-between;        
-
+        // justify-content: space-between;     
+        .thumb:first-child {
+            padding-left: 0 !important;
+        }
+        .thumb:last-child {
+            padding-right: 0 !important;
+        }
         .thumb {
-            padding: 7px;
-            border: 1px solid #ccc;
+            padding: 5px;
+            // border: 1px solid #ccc;
             margin-right: 10px;
-            box-shadow: 1px 1px 5px 1px #aaa;    
             img {
                 max-height: 100px;    
                 cursor: pointer;

@@ -14,7 +14,7 @@ class ProjectsTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i=1; $i<=12; $i++) 
+        for($i=1; $i<=28; $i++) 
         {
             Project::create([
                 'order' => $i,

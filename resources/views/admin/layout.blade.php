@@ -19,6 +19,9 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+  {{-- CSS CDN-s section  --}}
+  @yield('css-cdn')
 
   <!-- Custom styles for this template -->
   <link href="/css/app.css" rel="stylesheet">
@@ -42,18 +45,16 @@
         <!-- Sidebar -->
         <div id="sidebar">
             <ul class="sidebar-list">
-                <li class="sidebar-item"><a href="/admin"><i class="fas fa-tachometer-alt"></i></i>Admin</a></li>
-               
+                {{-- <li class="sidebar-item"><a href="/admin"><i class="fas fa-tachometer-alt"></i></i>Admin</a></li> --}}               
                 <li class="sidebar-item"><a href="/admin/projects"><i class="fas fa-percent"></i></i>Projects</a></li>
-                <li class="sidebar-item"><a href="#"><i class="fas fa-home"></i>Users</a></li>
-                
+                <li class="sidebar-item"><a href="#"><i class="fas fa-home"></i>Users</a></li>                
+                <li class="sidebar-item"><a href="/"><i class="fas fa-home"></i>Front end</a></li>
                 <li class="sidebar-item"><a href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                     <i class="fas fa-sign-out-alt mr-2 enlarge-mobile"></i><span class="hide-mobile">Logout</span>
                   </a></li>
                   
-                <li class="sidebar-item"><a href="/"><i class="fas fa-home"></i>Front end</a></li>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
@@ -86,7 +87,7 @@
 
   </div>   {{-- #app div for vue.js  --}}
 
-  <script src="/js/app.js"></script>
+  <script src="/js/admin.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>
