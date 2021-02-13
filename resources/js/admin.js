@@ -5,6 +5,3 @@
  */
 
 require('./bootstrap');
-
-require('./custom/admin-layout');
-require('./custom/admin-projects');

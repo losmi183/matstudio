@@ -45,14 +45,23 @@
         <!-- Sidebar -->
         <div id="sidebar">
             <ul class="sidebar-list">
-                {{-- <li class="sidebar-item"><a href="/admin"><i class="fas fa-tachometer-alt"></i></i>Admin</a></li> --}}               
-                <li class="sidebar-item"><a href="/admin/projects"><i class="fas fa-percent"></i></i>Projects</a></li>
-                <li class="sidebar-item"><a href="#"><i class="fas fa-home"></i>Users</a></li>                
+                {{-- <li class="sidebar-item"><a href="/admin"><i class="fas fa-tachometer-alt"></i></i>Admin</a></li> --}}   
+
+                <li class="sidebar-item">
+                  <a id="projects" href="#"><i class="fas fa-image"></i></i></i>Projects</a>
+                  <ul id="projects-sub" class="sublist">
+                    <li><a href="/admin/projects/create"><i class="fas fa-chevron-circle-right"></i>Add project</a></li>
+                    <li><a href="/admin/projects"><i class="fas fa-chevron-circle-right"></i>List projects</a></li>
+                    <li><a href="/admin/sortProjects"><i class="fas fa-chevron-circle-right"></i>Sort projects</a></li>
+                  </ul>
+                </li>
+                
+                <li class="sidebar-item"><a href="/admin/"><i class="fas fa-user"></i></i>Users</a></li>                
                 <li class="sidebar-item"><a href="/"><i class="fas fa-home"></i>Front end</a></li>
                 <li class="sidebar-item"><a href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                    <i class="fas fa-sign-out-alt mr-2 enlarge-mobile"></i><span class="hide-mobile">Logout</span>
+                    <i class="fas fa-sign-out-alt enlarge-mobile"></i><span class="hide-mobile">Logout</span>
                   </a></li>
                   
 
@@ -91,10 +100,19 @@
 
   <!-- Menu Toggle Script -->
   <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
+    // Toggle sidebar
+    $( document ).ready(function() {        
+        $('.hamburger').click(function() {        
+            $('#sidebar').animate({width:'toggle'},300);
+        });
     });
+
+    // Sidebar items
+    $('.sidebar-item').click(function() {
+      $(this).find('.sublist').slideToggle();
+      // alert('asd');
+    });
+
   </script>
 
   {{-- extra JS  --}}

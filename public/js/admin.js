@@ -1878,41 +1878,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/custom/admin-layout.js":
-/*!*********************************************!*\
-  !*** ./resources/js/custom/admin-layout.js ***!
-  \*********************************************/
-/***/ (() => {
-
-$(document).ready(function () {
-  $('.hamburger').click(function () {
-    $('#sidebar').animate({
-      width: 'toggle'
-    }, 300);
-  });
-});
-
-/***/ }),
-
-/***/ "./resources/js/custom/admin-projects.js":
-/*!***********************************************!*\
-  !*** ./resources/js/custom/admin-projects.js ***!
-  \***********************************************/
-/***/ (() => {
-
-$(document).ready(function () {
-  $('.add-second').click(function () {
-    $('.second-group').show();
-    $(this).hide();
-  });
-  $('.add-third').click(function () {
-    $('.third-group').show();
-    $(this).hide();
-  });
-});
-
-/***/ }),
-
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.js":
 /*!*****************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.js ***!
@@ -37301,10 +37266,6 @@ process.umask = function() { return 0; };
  * 
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
-__webpack_require__(/*! ./custom/admin-layout */ "./resources/js/custom/admin-layout.js");
-
-__webpack_require__(/*! ./custom/admin-projects */ "./resources/js/custom/admin-projects.js");
 })();
 
 /******/ })()

@@ -40,6 +40,7 @@ Route::get('/admin', function() {
 
 // RESTFUL Controller Routes
 Route::resource('/admin/projects', AdminProjectsController::class);
+Route::get('/admin/sortProjects', [AdminProjectsController::class, 'sort']);
 
 // Rotes for initial project position and size on project index page
 Route::post('/changePosition', [AdminProjectsController::class, 'changePosition']);

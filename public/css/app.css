@@ -11447,6 +11447,7 @@ html {
 #sidebar {
   padding-top: 20px;
   background: #333;
+  min-width: 170px;
 }
 
 #sidebar ul.sidebar-list {
@@ -11457,13 +11458,13 @@ html {
 
 #sidebar ul.sidebar-list li {
   padding: 0;
-  font-size: 1.2em;
+  font-size: 18px;
   white-space: nowrap;
 }
 
 #sidebar ul.sidebar-list li a {
   display: block;
-  padding: 8px 25px;
+  padding: 8px 12px;
   color: white;
 }
 
@@ -11471,22 +11472,31 @@ html {
   text-decoration: none;
 }
 
-#sidebar ul.sidebar-list li:hover {
-  background: #444;
+#sidebar li.sidebar-item a:hover {
+  background: #555;
   cursor: pointer;
 }
 
-#sidebar ul.sidebar-list li:hover a {
+#sidebar li.sidebar-item a:hover a {
   color: #3490dc;
 }
 
-#sidebar ul.sidebar-list li:hover i {
+#sidebar li.sidebar-item a:hover i {
   color: #3490dc;
 }
 
 #sidebar ul.sidebar-list i {
   color: #888;
-  margin-right: 10px;
+  width: 30px !important;
+}
+
+#sidebar .sublist {
+  display: none;
+  background: #444;
+}
+
+#sidebar .sublist a {
+  font-size: 13px;
 }
 
 /* Content styles  */
@@ -11565,6 +11575,31 @@ html {
   .photo-wrapper {
     width: 50%;
   }
+}
+
+#projects-sort #sortable {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 60%;
+}
+
+#projects-sort #sortable li {
+  margin: 0 3px 3px 3px;
+  padding: 0.4em;
+  padding-left: 1.5em;
+  font-size: 1.4em;
+  height: 18px;
+}
+
+#projects-sort #sortable li span {
+  position: absolute;
+  margin-left: -1.3em;
+}
+
+#projects-sort .ui-state-default {
+  background: greenyellow !important;
+  height: 80px;
 }
 
 

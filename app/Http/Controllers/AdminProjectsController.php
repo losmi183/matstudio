@@ -163,4 +163,20 @@ class AdminProjectsController extends Controller
         $project->save();
         return back();
     }   
+
+    /**
+     * Custom methods
+     */
+    public function sort()
+    {        
+        $projects = Project::with('photos')
+            ->orderBy('order', 'DESC')
+            ->paginate(15);
+        
+        $count = Project::count();
+
+        $orders = Project::pluck('order')->sortDesc();
+
+        return view('admin.projects.sort', compact('projects', 'count', 'orders'));
+    }
 }
