@@ -170,7 +170,7 @@ class AdminProjectsController extends Controller
     public function sort()
     {        
         $projects = Project::with('photos')
-            ->orderBy('order', 'DESC')
+            ->orderBy('order', 'ASC')
             ->paginate(15);
         
         $count = Project::count();
@@ -178,5 +178,10 @@ class AdminProjectsController extends Controller
         $orders = Project::pluck('order')->sortDesc();
 
         return view('admin.projects.sort', compact('projects', 'count', 'orders'));
+    }
+    public function sortUpdate(Request $request)
+    {        
+        $order = json_decode($request->order, true);
+        dd($order);
     }
 }

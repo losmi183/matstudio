@@ -9,14 +9,14 @@
         <div class="row">
 
 
-            <div class="col-lg-6">
+            <div class="col-lg-9">
                 <div class="img-wrapper ">
-                    <img class="img-fluid mx-auto" src="/{{$project->photos->first()->full ?? 'images/empty.jpeg' }}" alt="">
+                    <img class="img-fluid mx-auto" src="/{{$project->photos->first()->full ?? 'images/empty.jpeg' }}" onContextMenu="return false;">
                 </div>
 
                 <div class="thumb-wrapper">
                     @foreach ($project->photos as $photo)
-                        <div class="thumb"><img data-full="/{{$photo->full}}" src="/{{$photo->thumb}}" alt=""></div>
+                        <div class="thumb"><img data-full="/{{$photo->full}}" src="/{{$photo->thumb}}" onContextMenu="return false;"></div>
                     @endforeach
                 </div>
 
@@ -24,11 +24,11 @@
 
             </div>
 
-            <div class="col-lg-6">          
+            <div class="col-lg-3">          
                 
-                <div class="col-12"><h2 class="main-title"> {{$project->name}} </h2></div>
+                <div class="col-12"><h2 class="main-title mt-5 mt-lg-0"> {{$project->name}} </h2></div>
 
-                <p> {{$project->description}} </p>
+                <p class="text-center text-lg-left "> {{$project->description}} </p>
             </div>
         </div>
     </div>

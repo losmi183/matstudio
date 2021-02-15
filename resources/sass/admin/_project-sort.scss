@@ -1,26 +1,16 @@
 #projects-sort {
 
-    // .sort-list {
+    #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; overflow: auto;}
+    // #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+    // #sortable li span { position: absolute; margin-left: -1.3em; }
 
-    //     .sort-item {
-    //         padding: 5px;
-    //         border: 1px solid #ccc;
-    //         margin: 5px 0;
-    //         // cursor: poinliter;
-    //         // &:hover {
-    //         //     background: #666;
-    //         //     color: white;
-    //         // }
-    //     }
-
-    // }
-    #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-    #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-    #sortable li span { position: absolute; margin-left: -1.3em; }
-
-    .ui-state-default {
-        background: greenyellow !important;
-        height: 80px;
+    .sort-item {
+        cursor: pointer;
+        margin: 5px 0;
+        border: 1px solid #333;
+        &:hover {
+            background: #eee;
+        }
     }
   
 

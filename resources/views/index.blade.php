@@ -70,7 +70,7 @@
                     <div class="masonry-img">
                         {{-- <a href="{{ route('project', $project->id) }}"> --}}
                         {{-- <a href="#"> --}}
-                            <img src="/{{ $project->photos->first()->full ?? 'images/empty.jpeg'  }}" alt="">
+                            <img src="/{{ $project->photos->first()->full ?? 'images/empty.jpeg'  }}" onContextMenu="return false;">
                         {{-- </a> --}}                        
                     </div>
                     {{-- <div class="masonry-text">
@@ -121,7 +121,7 @@
 @endsection
 
 @section('extra-js')
-    
+
 @endsection
 
 
