@@ -167,11 +167,12 @@ class AdminProjectsController extends Controller
     /**
      * Custom methods
      */
+    // Sort blade 
     public function sort()
     {        
         $projects = Project::with('photos')
             ->orderBy('order', 'ASC')
-            ->paginate(15);
+            ->paginate(30);
         
         $count = Project::count();
 
@@ -179,9 +180,23 @@ class AdminProjectsController extends Controller
 
         return view('admin.projects.sort', compact('projects', 'count', 'orders'));
     }
+
+    // Apply sorting in database
     public function sortUpdate(Request $request)
     {        
         $order = json_decode($request->order, true);
-        dd($order);
+
+        foreach($order as $value)
+        {
+            // dump($value);
+            // Value 1 represent id in database
+            $project = Project::find($value[0]);
+            $project->order = $value[1];
+            $project->save();
+            // dump($project);
+        }
+
+
+        return back()->with(['success', 'New order in database is applied']);   
     }
 }

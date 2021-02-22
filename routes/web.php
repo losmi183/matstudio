@@ -39,9 +39,9 @@ Route::get('/admin', function() {
 });
 
 // RESTFUL Controller Routes
+Route::get('/admin/projects/sortProjects', [AdminProjectsController::class, 'sort']);
+Route::post('/admin/projects/sortUpdate', [AdminProjectsController::class, 'sortUpdate']);
 Route::resource('/admin/projects', AdminProjectsController::class);
-Route::get('/admin/sortProjects', [AdminProjectsController::class, 'sort']);
-Route::post('/admin/sortUpdate', [AdminProjectsController::class, 'sortUpdate']);
 
 // Rotes for initial project position and size on project index page
 Route::post('/changePosition', [AdminProjectsController::class, 'changePosition']);

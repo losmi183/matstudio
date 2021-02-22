@@ -1969,7 +1969,8 @@ $(function () {
             var msnry = new Masonry(grid, {
               itemSelector: '.grid-item',
               columnWidth: '.grid-sizer',
-              percentPosition: true // gutter: 10
+              percentPosition: true,
+              horizontalOrder: true // gutter: 10
 
             }); // Reload gallery when change screen width, using imagesLoaded function from imagesloaded library
 
@@ -2014,7 +2015,8 @@ $(document).ready(function () {
   var msnry = new Masonry(grid, {
     itemSelector: '.grid-item',
     columnWidth: '.grid-sizer',
-    percentPosition: true // gutter: 10
+    percentPosition: true,
+    horizontalOrder: true // gutter: 10
 
   }); // Reload gallery when change screen width, using imagesLoaded function from imagesloaded library
 

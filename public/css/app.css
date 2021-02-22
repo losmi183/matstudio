@@ -11487,12 +11487,15 @@ html {
 }
 
 #sidebar .sublist {
-  display: none;
   background: #444;
 }
 
 #sidebar .sublist a {
   font-size: 13px;
+}
+
+#sidebar .active-menu {
+  color: #75b4e7 !important;
 }
 
 /* Content styles  */

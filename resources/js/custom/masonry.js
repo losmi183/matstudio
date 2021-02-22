@@ -10,6 +10,7 @@ $( document ).ready(function() {
         itemSelector: '.grid-item',
         columnWidth: '.grid-sizer',
         percentPosition: true,
+        horizontalOrder: true
         // gutter: 10
     });
     

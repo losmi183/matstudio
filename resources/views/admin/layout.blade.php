@@ -47,12 +47,22 @@
             <ul class="sidebar-list">
                 {{-- <li class="sidebar-item"><a href="/admin"><i class="fas fa-tachometer-alt"></i></i>Admin</a></li> --}}   
 
-                <li class="sidebar-item">
-                  <a id="projects" href="#"><i class="fas fa-image"></i></i></i>Projects</a>
-                  <ul id="projects-sub" class="sublist">
-                    <li><a href="/admin/projects/create"><i class="fas fa-chevron-circle-right"></i>Add project</a></li>
-                    <li><a href="/admin/projects"><i class="fas fa-chevron-circle-right"></i>List projects</a></li>
-                    <li><a href="/admin/sortProjects"><i class="fas fa-chevron-circle-right"></i>Sort projects</a></li>
+                <li class="sidebar-item">                  
+                  <a id="projects" href="#"><i class="fas fa-image"></i>Projects</a>
+                  <ul id="projects-sub" class="sublist" style="display: {{ (request()->is('admin/project*')) ? 'block' : 'none' }};">
+
+                    <li><a class="{{ (request()->is('admin/projects/create')) ? 'active-menu' : 'none' }}" 
+                           href="/admin/projects/create"><i class="fas fa-chevron-circle-right"></i>Add project
+                    </a></li>
+
+                    <li><a class="{{ (request()->is('admin/projects')) ? 'active-menu' : 'none' }}" 
+                           href="/admin/projects"><i class="fas fa-chevron-circle-right"></i>List projects
+                    </a></li>
+
+                    <li><a class="{{ (request()->is('admin/projects/sortProjects')) ? 'active-menu' : 'none' }}" 
+                          href="/admin/projects/sortProjects"><i class="fas fa-chevron-circle-right"></i>Sort projects
+                    </a></li>
+
                   </ul>
                 </li>
                 
@@ -73,11 +83,11 @@
 
         <div id="content">
 
-          <div class="mt-2">
+          <div class="mt-3">
             @include('admin.messages')
           </div>
 
-              <div class="container-fluid p-0">
+              <div class="container-fluid">
                   <div class="row no-gutters">
                       <div class="col-12">
                           <div class="card">

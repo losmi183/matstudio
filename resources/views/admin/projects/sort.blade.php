@@ -3,15 +3,18 @@
 @section('content')
 
 <div id="projects-sort">
-    <div class="container">
+    <div class="container-fluid">
 
-        <form action="/admin/sortUpdate" method="post">
-            @csrf
-            <input id="order" type="text" name="order" value="ovo je redosled">
-            <button class="btn btn-danger">SAVE</button>
-        </form>
+        <div class="d-flex align-items-center" >
+            <h1 class='admin-title p-3'>Sort Projects</h1>       
+            
+            <form action="/admin/projects/sortUpdate" method="post">
+                @csrf
+                <input id="order" type="text" name="order" value="ovo je redosled">
+                <button class="btn btn-primary">Apply Order</button>
+            </form>
+        </div>
 
-        <a id="sortUpdate" href="#" class="btn">Sort Update</a>
 
         <div class="row d-flex justify-content-center">
             <div class="col-6 offset-3">

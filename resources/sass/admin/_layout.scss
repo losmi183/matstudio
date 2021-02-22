@@ -71,11 +71,14 @@
     }
 
     .sublist {
-        display: none;
+        // display: none;
         background: #444;
         a {
             font-size: 13px;
         }
+    }
+    .active-menu {
+        color: lighten($primary-color, 15%) !important;
     }
 
 }
