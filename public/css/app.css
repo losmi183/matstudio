@@ -11290,6 +11290,12 @@ footer {
   margin-bottom: 15px;
 }
 
+#project .img-wrapper img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+
 #project .thumb-wrapper {
   display: flex;
 }

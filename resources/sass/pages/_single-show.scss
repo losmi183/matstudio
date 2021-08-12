@@ -8,11 +8,11 @@
     }
 
     .img-wrapper {
-        // padding: 15px;
         margin-bottom: 15px;
-        // img {
-        //     cursor: zoom-in;
-        // }       
+    }
+    .img-wrapper img {
+        object-fit: cover;
+        width: 100%;
     }
 
     .thumb-wrapper {
